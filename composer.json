@@ -1,0 +1,27 @@
+{
+    "name": "alveshm/projeto-php",
+    "description": "Sistema de teste para cadastro e venda de produtos",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "alveshm",
+            "email": "mateush.alves96@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "vendor"
+    },
+    "autoload": {
+        "psr-4": {
+            "Source\\": "source/"
+        },
+        "files": [
+            "source/Config.php"
+        ]
+    },
+    "require": {
+        "coffeecode/router": "1.0.*",
+        "coffeecode/datalayer": "1.0.*"
+    }
+}

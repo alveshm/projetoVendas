@@ -1,0 +1,68 @@
+CREATE DATABASE projeto_vendas
+  WITH ENCODING='UTF8'
+       CONNECTION LIMIT=-1;
+
+
+CREATE TABLE public.imposto_tipo_produtos
+(
+   id serial NOT NULL, 
+   nome character(255) NOT NULL, 
+   valor double precision NOT NULL,
+   CONSTRAINT "itp_PK" PRIMARY KEY (id)
+) 
+WITH (
+  OIDS = FALSE
+)
+;
+
+CREATE TABLE public.tipo_produtos
+(
+   nome character(255) NOT NULL, 
+   id serial NOT NULL, 
+   imposto_tipo_produto_id integer NOT NULL, 
+   CONSTRAINT "tp_PK" PRIMARY KEY (id), 
+   CONSTRAINT "itp_FK" FOREIGN KEY (imposto_tipo_produto_id) REFERENCES imposto_tipo_produtos (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
+WITH (
+  OIDS = FALSE
+)
+;
+
+CREATE TABLE public.produtos
+(
+   id serial NOT NULL, 
+   nome character(255) NOT NULL, 
+   descricao text, 
+   tipo_produto_id integer NOT NULL,
+   valor double precision NOT NULL
+   CONSTRAINT "produtos_PK" PRIMARY KEY (id), 
+   CONSTRAINT "tipo_produto_FK" FOREIGN KEY (tipo_produto_id) REFERENCES tipo_produtos (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
+WITH (
+  OIDS = FALSE
+)
+;
+
+CREATE TABLE public.vendas
+(
+   id serial NOT NULL, 
+   CONSTRAINT "vendas_PK" PRIMARY KEY (id)
+) 
+WITH (
+  OIDS = FALSE
+)
+;
+
+CREATE TABLE public.venda_produtos
+(
+   id serial NOT NULL, 
+   venda_id integer NOT NULL, 
+   quantidade integer NOT NULL, 
+   CONSTRAINT "venda_produtos_PK" PRIMARY KEY (id), 
+   CONSTRAINT "vendas_FK" FOREIGN KEY (venda_id) REFERENCES vendas (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
+WITH (
+  OIDS = FALSE
+)
+;
+
