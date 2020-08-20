@@ -6,9 +6,9 @@ use CoffeeCode\DataLayer\DataLayer;
 
 class VendaProduto extends DataLayer 
 {
-    public function __contruct()
+    public function __construct()
     {
-        parent::__contruct("venda_produtos", ["venda_id", "quantidade"]);
+        parent::__construct("venda_produtos", ["venda_id", "quantidade"]);
     }
 
 }

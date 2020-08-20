@@ -11,17 +11,26 @@ $router->namespace('Source\App');
 $router->group('produtos');
 $router->get('/', 'ProdutosController:index');
 $router->get('/add', 'ProdutosController:add');
-$router->get('/delete', 'ProdutosController:delete');
+$router->post('/add', 'ProdutosController:addPost');
+$router->get("/edit/{id}", 'ProdutosController:edit');
+$router->post("/edit/{id}", 'ProdutosController:editPost');
+$router->get("/delete/{id}", 'ProdutosController:delete');
 
 $router->group('tipo-produtos');
 $router->get('/', 'TipoProdutosController:index');
 $router->get('/add', 'TipoProdutosController:add');
-$router->get('/delete', 'TipoProdutosController:delete');
+$router->post('/add', 'TipoProdutosController:addPost');
+$router->get("/edit/{id}", 'TipoProdutosController:edit');
+$router->post("/edit/{id}", 'TipoProdutosController:editPost');
+$router->get("/delete/{id}", 'TipoProdutosController:delete');
 
 $router->group('imposto-tipo-produtos');
 $router->get('/', 'ImpostoTipoProdutosController:index');
 $router->get('/add', 'ImpostoTipoProdutosController:add');
-$router->get('/delete', 'ImpostoTipoProdutosController:delete');
+$router->post('/add', 'ImpostoTipoProdutosController:addPost');
+$router->get("/edit/{id}", 'ImpostoTipoProdutosController:edit');
+$router->post("/edit/{id}", 'ImpostoTipoProdutosController:editPost');
+$router->get("/delete/{id}", 'ImpostoTipoProdutosController:delete');
 
 $router->group(null);
 $router->get('/index', 'AppController:index');
@@ -29,7 +38,6 @@ $router->get('/index', 'AppController:index');
 $router->group("ops");
 $router->get("/{errcode}", function($data) {
     require __DIR__ . "/{$data['errcode']}.php";
-    // echo "<h1>Erro {$data['errcode']}";
 });
 
 $router->dispatch();

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tipo Produto - Adicionar</title>
+  <title>Produto - Editar</title>
 
   <!-- Custom fonts for this template -->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,17 +39,17 @@
               <h6 class="m-0 font-weight-bold text-primary">Tipo Produto</h6>
             </div>
             <div class="card-body">
-            <form method="POST" action="<?= $url ?>/tipo-produtos/add">
+            <form method="POST" action="<?= $url ?>tipo-produtos/edit/<?= $oTipoProduto->id ?>">
               <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nome" placeholder="Nome">
+                <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nome" placeholder="Nome" value="<?= str_replace(' ', '', $oTipoProduto->nome) ?>">
               </div>
               <div class="form-group">
                 <div class="input-group mb-3">
                     <select class="custom-select" id="imposto-tipo-produto" name="imposto_tipo_produto_id">
                       <option selected>-- SELECIONE --</option>
                       <?php foreach ($aImpostoTipoProdutos as $key => $oImpostoTipoProduto) : ?>
-                        <option value="<?= $oImpostoTipoProduto->id ?>"><?= $oImpostoTipoProduto->nome . '(' . $oImpostoTipoProduto->valor . '%)' ?></option>
+                        <option value="<?= $oImpostoTipoProduto->id ?>" <?= $oImpostoTipoProduto->id == $oTipoProduto->imposto_tipo_produto_id ? 'selected' : '' ?>><?= $oImpostoTipoProduto->nome . '(' . $oImpostoTipoProduto->valor . '%)' ?></option>
                       <?php endforeach; ?>
                     </select>
                 </div>

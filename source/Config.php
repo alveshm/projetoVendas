@@ -6,7 +6,7 @@ define("DATA_LAYER_CONFIG", [
     "driver" => "pgsql",
     "host" => "localhost",
     "port" => "5432",
-    "dbname" => "datalayer_example",
+    "dbname" => "projeto_vendas",
     "username" => "postgres",
     "passwd" => "root",
     "options" => [

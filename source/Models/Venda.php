@@ -6,9 +6,9 @@ use CoffeeCode\DataLayer\DataLayer;
 
 class Venda extends DataLayer 
 {
-    public function __contruct()
+    public function __construct()
     {
-        parent::__contruct("vendas", []);
+        parent::__construct("vendas", []);
     }
 
 }

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tipo Produto - Adicionar</title>
+  <title>Produto - Editar</title>
 
   <!-- Custom fonts for this template -->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,23 +36,31 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Tipo Produto</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Produto</h6>
             </div>
             <div class="card-body">
-            <form method="POST" action="<?= $url ?>/tipo-produtos/add">
+            <form method="POST" action="<?= $url ?>produtos/edit/<?= $oProduto->id ?>">
               <div class="form-group">
                 <label for="nome">Nome</label>
-                <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nome" placeholder="Nome">
+                <input type="text" class="form-control" name="nome" id="nome" aria-describedby="nome" placeholder="Nome" value="<?= str_replace(' ', '', $oProduto->nome) ?>">
+              </div>
+              <div class="form-group">
+                <label for="descricao">Descrição</label>
+                <textarea type="text" class="form-control" name="descricao" id="descricao" aria-describedby="descricao" placeholder="Descrição"><?= str_replace(' ', '', $oProduto->descricao) ?></textarea>
               </div>
               <div class="form-group">
                 <div class="input-group mb-3">
-                    <select class="custom-select" id="imposto-tipo-produto" name="imposto_tipo_produto_id">
+                    <select class="custom-select" id="tipo-produto" name="tipo_produto_id">
                       <option selected>-- SELECIONE --</option>
-                      <?php foreach ($aImpostoTipoProdutos as $key => $oImpostoTipoProduto) : ?>
-                        <option value="<?= $oImpostoTipoProduto->id ?>"><?= $oImpostoTipoProduto->nome . '(' . $oImpostoTipoProduto->valor . '%)' ?></option>
+                      <?php foreach ($aTipoProdutos as $key => $oTipoProduto) : ?>
+                        <option value="<?= $oTipoProduto->id ?>" <?= $oTipoProduto->id == $oProduto->tipo_produto_id ? 'selected' : '' ?>><?= $oTipoProduto->nome ?></option>
                       <?php endforeach; ?>
                     </select>
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="valor">Valor</label>
+                <input type="number" class="form-control" name="valor" id="valor" placeholder="Valor" value="<?= $oProduto->valor ?>">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
