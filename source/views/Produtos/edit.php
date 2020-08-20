@@ -62,7 +62,7 @@
                 <label for="valor">Valor</label>
                 <input type="number" class="form-control" name="valor" id="valor" placeholder="Valor" value="<?= $oProduto->valor ?>">
               </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
             </div>
           </div>

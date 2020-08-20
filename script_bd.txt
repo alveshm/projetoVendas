@@ -18,6 +18,24 @@ WITH (
 ALTER TABLE imposto_tipo_produtos
   OWNER TO postgres;
 
+CREATE TABLE tipo_produtos
+(
+  nome character(255) NOT NULL,
+  id serial NOT NULL,
+  imposto_tipo_produto_id integer NOT NULL,
+  created_at timestamp without time zone,
+  updated_at timestamp without time zone,
+  CONSTRAINT "tp_PK" PRIMARY KEY (id),
+  CONSTRAINT "itp_FK" FOREIGN KEY (imposto_tipo_produto_id)
+      REFERENCES imposto_tipo_produtos (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE tipo_produtos
+  OWNER TO postgres;
+
 CREATE TABLE produtos
 (
   id serial NOT NULL,
@@ -38,22 +56,17 @@ WITH (
 ALTER TABLE produtos
   OWNER TO postgres;
 
-CREATE TABLE tipo_produtos
+CREATE TABLE vendas
 (
-  nome character(255) NOT NULL,
   id serial NOT NULL,
-  imposto_tipo_produto_id integer NOT NULL,
   created_at timestamp without time zone,
   updated_at timestamp without time zone,
-  CONSTRAINT "tp_PK" PRIMARY KEY (id),
-  CONSTRAINT "itp_FK" FOREIGN KEY (imposto_tipo_produto_id)
-      REFERENCES imposto_tipo_produtos (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
+  CONSTRAINT "vendas_PK" PRIMARY KEY (id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE tipo_produtos
+ALTER TABLE vendas
   OWNER TO postgres;
 
 CREATE TABLE venda_produtos
@@ -76,17 +89,4 @@ WITH (
   OIDS=FALSE
 );
 ALTER TABLE venda_produtos
-  OWNER TO postgres;
-
-CREATE TABLE vendas
-(
-  id serial NOT NULL,
-  created_at timestamp without time zone,
-  updated_at timestamp without time zone,
-  CONSTRAINT "vendas_PK" PRIMARY KEY (id)
-)
-WITH (
-  OIDS=FALSE
-);
-ALTER TABLE vendas
   OWNER TO postgres;

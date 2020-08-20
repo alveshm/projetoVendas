@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Produtos - Listagem</title>
+  <title>Venda - Listagem Produtos</title>
 
   <!-- Custom fonts for this template -->
   <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,8 +36,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Vendas</h6>
-              <a href="<?= URL_BASE . 'vendas/add' ?>"><button type="button" class="btn btn-primary">Adicionar</button></a>
+              <h6 class="m-0 font-weight-bold text-primary">Venda - Produtos</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">

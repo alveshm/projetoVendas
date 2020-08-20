@@ -11,6 +11,7 @@ class ImpostoTipoProdutosController {
     public function index() {
         $oImpostoTipoProduto = new ImpostoTipoProduto();
         $aImpostoTipoProdutos = $oImpostoTipoProduto->find()->fetch(true);
+        $aImpostoTipoProdutos = $aImpostoTipoProdutos ?: [];
 
         require __DIR__ . '/../views/ImpostoTipoProdutos/index.php';
     }

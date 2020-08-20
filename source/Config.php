@@ -1,6 +1,6 @@
 <?php
 
-define('URL_BASE', 'http://projeto-php.test/');
+define('URL_BASE', 'http://projetoVendas.test/');
 
 define("DATA_LAYER_CONFIG", [
     "driver" => "pgsql",
