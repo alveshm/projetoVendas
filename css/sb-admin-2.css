@@ -11228,3 +11228,7 @@ body.sidebar-toggled footer.sticky-footer {
   align-items: center;
   justify-content: space-between;
 }
+
+.hidden {
+  display: none;
+}

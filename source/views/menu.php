@@ -14,7 +14,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-  <a class="nav-link" href="/index.html">
+  <a class="nav-link" href="/">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Inicial</span></a>
 </li>
@@ -46,6 +46,13 @@
   <a class="nav-link" href="/imposto-tipo-produtos">
     <i class="fas fa-fw fa-tachometer-alt"></i>
     <span>Impostos</span></a>
+</li>
+
+<!-- Nav Item - Pages Collapse Menu -->
+<li class="nav-item active">
+  <a class="nav-link" href="/vendas">
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>Vendas</span></a>
 </li>
 
 <!-- Divider -->

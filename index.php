@@ -32,8 +32,15 @@ $router->get("/edit/{id}", 'ImpostoTipoProdutosController:edit');
 $router->post("/edit/{id}", 'ImpostoTipoProdutosController:editPost');
 $router->get("/delete/{id}", 'ImpostoTipoProdutosController:delete');
 
+$router->group('vendas');
+$router->get('/', 'VendasController:index');
+$router->get('/add', 'VendasController:add');
+$router->post('/add', 'VendasController:addPost');
+$router->get("/view/{id}", 'VendasController:view');
+$router->get("/delete/{id}", 'VendasController:delete');
+
 $router->group(null);
-$router->get('/index', 'AppController:index');
+$router->get('/', 'VendasController:view');
 
 $router->group("ops");
 $router->get("/{errcode}", function($data) {

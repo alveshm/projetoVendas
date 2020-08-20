@@ -10,9 +10,19 @@ use Source\Models\VendaProduto;
 class VendasController {
 
     public function index() {
-        $oVenda = new Venda();
-        $aVendas = $oVenda->find()->fetch(true);
-        $aVendas = $aVendas ?: [];
+        $oVendaProduto = new VendaProduto();
+        $aVendaProdutos = $oVendaProduto->find()->fetch(true);
+        $aVendaProdutos = $aVendaProdutos ?: [];
+        $aCompraProdutos = [];
+        foreach ($aVendaProdutos as $key => $oVendaProduto) {
+            if (isset($aCompraProdutos[$oVendaProduto->venda_id])) {
+                $aCompraProdutos[$oVendaProduto->venda_id]['dTotalCompra'] += $oVendaProduto->quantidade * $oVendaProduto->produto()->valor;
+                $aCompraProdutos[$oVendaProduto->venda_id]['dTotalImpostos'] += ($oVendaProduto->quantidade * $oVendaProduto->produto()->valor) / $oVendaProduto->produto()->tipoProduto()->impostoTipoProduto()->valor;
+            } else {
+                $aCompraProdutos[$oVendaProduto->venda_id]['dTotalCompra'] = $oVendaProduto->quantidade * $oVendaProduto->produto()->valor;
+                $aCompraProdutos[$oVendaProduto->venda_id]['dTotalImpostos'] = ($oVendaProduto->quantidade * $oVendaProduto->produto()->valor) / $oVendaProduto->produto()->tipoProduto()->impostoTipoProduto()->valor;
+            }
+        }
 
         require __DIR__ . '/../views/Vendas/index.php';
     }
@@ -26,6 +36,25 @@ class VendasController {
         require __DIR__ . '/../views/Vendas/add.php'; 
     }
 
+    public function addPost($data) {
+
+        if (!empty($data)) {
+            $oVenda = new Venda();
+            echo '<pre>';
+            if ($oVenda->save() && !empty($data['itens'])) {
+                foreach ($data['itens'] as $key => $aItem) {
+                    $oVendaProduto = new VendaProduto();
+                    $oVendaProduto->venda_id = $oVenda->id;
+                    $oVendaProduto->produto_id = $aItem['produto'];
+                    $oVendaProduto->quantidade = $aItem['quantidade'];
+                    $oVendaProduto->save();
+                }
+            }
+        }
+
+        header('Location: ' . URL_BASE . 'vendas');
+    }
+
     public function view($data) {
         if (!empty($data)) {
             $oVendaProduto = new VendaProduto();
@@ -35,7 +64,7 @@ class VendasController {
             require __DIR__ . '/../views/Vendas/view.php'; 
 
         } else {
-            header('Location: ' . URL_BASE . 'tipo-produtos');
+            header('Location: ' . URL_BASE . 'vendas');
         }
     }
 
